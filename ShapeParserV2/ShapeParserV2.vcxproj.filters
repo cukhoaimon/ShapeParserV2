@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{09766b7e-c392-4bdb-a4dc-827898c94df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{db63a1db-4532-47da-8521-35507ae8ed87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{38d2cd3f-3857-4a4f-aa3b-eb4b5e79a6eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Header files">
+      <UniqueIdentifier>{e7198a55-f84a-4214-abbb-1b2ea2dc859c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Source files">
+      <UniqueIdentifier>{f17d33f2-db38-4793-875f-8882d05593ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller\Header files">
+      <UniqueIdentifier>{edfae4f7-d2b6-4484-a9c0-4ad59074942b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller\Source files">
+      <UniqueIdentifier>{d1bbd86e-afaa-4e91-95ae-fa6ead4251b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\Header files">
+      <UniqueIdentifier>{e92bcf38-08c3-47c7-bfec-0eedd104efc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\Source files">
+      <UniqueIdentifier>{eea539a4-dff3-4bb0-b186-0d2c105f86e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Controller\ShapeFactory.cpp">
+      <Filter>Controller\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="View\IShapeToStringDataConverter.cpp">
+      <Filter>View\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="View\ConverterFactory.cpp">
+      <Filter>View\Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Model\IShape.h">
+      <Filter>Model\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\ShapeFactory.h">
+      <Filter>Controller\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\IParser.h">
+      <Filter>Controller\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="View\ConverterFactory.h">
+      <Filter>View\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="View\IShapeToStringDataConverter.h">
+      <Filter>View\Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="shape.txt">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+</Project>
