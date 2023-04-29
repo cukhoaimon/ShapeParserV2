@@ -38,7 +38,7 @@ int main()
 				s_factory.registerWith(shapeName, instance);
 			}
 
-			if (NULL != fn_parser) {
+			if (NULL != fn_converter) {
 				IShapeToStringDataConverter* instance = fn_converter();
 				string shapeName = extractExtension(file_name);
 				c_factory.registerWith(shapeName, instance);
