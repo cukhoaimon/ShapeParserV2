@@ -10,9 +10,8 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 #include "..\ShapeParserV2\Model\IShape.h"
-#include "..\ShapeParserV2\Controller\IShapeToStringDataConverter.h"
 #include "..\ShapeParserV2\Controller\IParser.h"
+#include "..\ShapeParserV2\Controller\IShapeToStringDataConverter.h"
 #include "..\utils\utils.h"
-
 
 #endif //PCH_H

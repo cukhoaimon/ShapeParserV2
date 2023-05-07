@@ -18,6 +18,11 @@
 #include <iomanip>
 #include <filesystem>
 #include <windows.h> 
+#include <tuple>
+#include <memory>
+
+#define SHAPE_API __declspec(dllexport) 
+
 
 using std::cout, std::cin, std::endl;
 using std::wcout;
@@ -28,12 +33,16 @@ using std::vector;
 using std::map;
 using std::ifstream, std::ofstream;
 using std::setw, std::left, std::setprecision, std::fixed;
+using std::tuple;
+using std::shared_ptr;
 
 namespace fs = std::filesystem;
 
+typedef tuple<wstring, wstring, wstring, wstring> TUPLEOFSHAPESTRING;
+
 vector<double> extractDouble(string line);
 
-wstring pattern(wstring shape, wstring attributes, double perimeter, double area);
+double m_round(double, int);
 
 wstring getFileName(string dir_path);
 

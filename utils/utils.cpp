@@ -28,41 +28,12 @@ vector<double> extractDouble(string line)
     return values;
 }
 
-wstring pattern(wstring shape, wstring attributes, double perimeter, double area)
+double m_round(double source, int digits)
 {
-    wstringstream builder;
-
-    // column 2
-    builder << " | ";
-    builder.fill(' ');
-    builder.width(15);
-    builder << left << shape;
-
-    // column 3
-    builder << " | ";
-    builder.fill(' ');
-    builder.width(20);
-    builder << left << attributes;
-
-    // column 4
-    builder << " | ";
-    builder << left << L"Chu vi=" << fixed << left;
-    builder.fill(' ');
-    builder.width(10);
-    builder.precision(1);
-    builder << perimeter;
-
-    // column 5
-    builder << " | ";
-    builder << left << L"Diện tích=" << fixed << left;
-    builder.fill(' ');
-    builder.width(10);
-    builder.precision(2);
-    builder << area;
-    builder << " |";
-
-    wstring result = builder.str();
-    return result;
+    source *= source * pow(10, digits);
+    source = round(source);
+    source /= pow(10, digits);
+    return source;
 }
 
 wstring getFileName(string dir_path) {

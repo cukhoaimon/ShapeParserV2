@@ -15,8 +15,8 @@ extern "C" {
         Circle(double radius);
 
         double radius();
-        double area();
-        double perimeter();
+        double area() override;
+        double perimeter() override;
 
         string toString();
     }; 

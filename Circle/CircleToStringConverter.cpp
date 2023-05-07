@@ -1,16 +1,40 @@
 #include "pch.h"
 #include "CircleToStringConverter.h"
 
-wstring CircleToStringConverter::convert(IShape* shape)
+CircleToStringConverter::CircleToStringConverter() {
+    // do nothing
+}
+
+CircleToStringConverter* CircleToStringConverter::getInstance()
+{
+    if (_instance == nullptr) {
+        _instance = new CircleToStringConverter();
+    }
+
+    return _instance;
+}
+
+TUPLEOFSHAPESTRING CircleToStringConverter::convert(IShape* shape)
 {
     Circle* circle = (Circle*)shape;
-    wstringstream attributesBuilder;
-    attributesBuilder << L"Bán kính=" << circle->radius();
+    wstringstream *builder = new wstringstream;
 
-    wstring attributes = attributesBuilder.str();
+    *builder << L"Bán kính=" << circle->radius();
+    wstring attributes(builder->str());
 
+    wstring shapeName = L"Hình tròn";
+    
+    delete builder;
+    builder = new wstringstream;
+    *builder << m_round(circle->perimeter(), 1);
+    wstring perimeter(builder->str());
 
-    wstring result = pattern(L"Hình tròn", attributes, circle->perimeter(), circle->perimeter());
+    delete builder;
+    builder = new wstringstream;
+    *builder << m_round(circle->area(), 2);
+    wstring area = builder->str();
+
+    TUPLEOFSHAPESTRING result = { shapeName, attributes, perimeter, area };
     return result;
 }
 

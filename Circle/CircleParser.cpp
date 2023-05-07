@@ -1,6 +1,20 @@
 #include "pch.h"
 #include "CircleParser.h"
 
+CircleParser::CircleParser() {
+    // do nothing
+}
+
+CircleParser* CircleParser::getInstance()
+{
+    if (_instance == nullptr) {
+        _instance = new CircleParser();
+    }
+
+    return _instance;
+}
+
+
 IShape* CircleParser::parse(string line)
 {
     double radius = 0;

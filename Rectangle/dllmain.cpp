@@ -1,19 +1,20 @@
-﻿// dllmain.cpp : Defines the entry point for the DLL application.
+﻿#include <windows.h>
+#include <objbase.h>
 #include "pch.h"
+#include "RectangleParser.h"
+#include "RectangleToStringConverter.h"
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-                     )
-{
-    switch (ul_reason_for_call)
+// Define the Shape interface
+extern "C" {
+    SHAPE_API IParser* __stdcall getParserInstance()
     {
-    case DLL_PROCESS_ATTACH:
-    case DLL_THREAD_ATTACH:
-    case DLL_THREAD_DETACH:
-    case DLL_PROCESS_DETACH:
-        break;
+        IParser* result = new RectangleParser();
+        return result;
     }
-    return TRUE;
-}
 
+    SHAPE_API IShapeToStringDataConverter* __stdcall getConverterInstance()
+    {
+        IShapeToStringDataConverter* result = new RectangleToStringConverter();
+        return result;
+    }
+}

@@ -25,9 +25,6 @@
     <Filter Include="Model\Header files">
       <UniqueIdentifier>{e7198a55-f84a-4214-abbb-1b2ea2dc859c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Model\Source files">
-      <UniqueIdentifier>{f17d33f2-db38-4793-875f-8882d05593ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Controller\Header files">
       <UniqueIdentifier>{edfae4f7-d2b6-4484-a9c0-4ad59074942b}</UniqueIdentifier>
     </Filter>
@@ -48,10 +45,13 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="View\IShapeToStringDataConverter.cpp">
-      <Filter>View\Source files</Filter>
+    <ClCompile Include="Controller\ConverterFactory.cpp">
+      <Filter>Controller\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="View\ConverterFactory.cpp">
+    <ClCompile Include="Controller\IShapeToStringDataConverter.cpp">
+      <Filter>Controller\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="View\ShapePrinter.cpp">
       <Filter>View\Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,10 +65,13 @@
     <ClInclude Include="Controller\IParser.h">
       <Filter>Controller\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="View\ConverterFactory.h">
-      <Filter>View\Header files</Filter>
+    <ClInclude Include="Controller\ConverterFactory.h">
+      <Filter>Controller\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="View\IShapeToStringDataConverter.h">
+    <ClInclude Include="Controller\IShapeToStringDataConverter.h">
+      <Filter>Controller\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="View\ShapePrinter.h">
       <Filter>View\Header files</Filter>
     </ClInclude>
   </ItemGroup>

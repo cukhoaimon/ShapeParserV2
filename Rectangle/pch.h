@@ -11,7 +11,8 @@
 #include "framework.h"
 #include "..\utils\utils.h"
 #include "..\ShapeParserV2\Model\IShape.h"
-#include "..\ShapeParserV2\View\IShapeToStringDataConverter.h"
+#include "..\ShapeParserV2\Controller\IShapeToStringDataConverter.h"
 #include "..\ShapeParserV2\Controller\IParser.h"
+
 
 #endif //PCH_H

@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <filesystem>
 #include <windows.h> 
+#include <tuple>
 
 using std::cout, std::cin, std::endl;
 using std::wcout;
@@ -21,11 +22,14 @@ using std::vector;
 using std::map;
 using std::ifstream, std::ofstream;
 using std::setw, std::left, std::setprecision, std::fixed;
+using std::tuple;
 
 namespace fs = std::filesystem;
 
+
+typedef tuple<wstring, wstring, wstring, wstring> TUPLEOFSHAPESTRING;
+
 vector<double> extractDouble(string line);
-wstring pattern(wstring shape, wstring attributes, double perimeter, double area);
 wstring getFileName(string);
 vector<wstring> extractDLLFiles(fs::path);
 string extractExtension(wstring);

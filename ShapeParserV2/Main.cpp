@@ -1,11 +1,13 @@
 ﻿#include "Model/IShape.h"
 #include "Controller/ShapeFactory.h"
-#include "View/ConverterFactory.h"
-#include "..\utils\utils.h"
+#include "Controller/ConverterFactory.h"
+#include "View/ShapePrinter.h"
+#include "../utils/utils.h"
 
 int main()
 {
-	typedef IShapeToStringDataConverter*(__cdecl* FN_SHAPE_CONVERTER)();
+	int hr = _setmode(_fileno(stdout), _O_U16TEXT);
+	typedef IShapeToStringDataConverter* (__cdecl* FN_SHAPE_CONVERTER)();
 	typedef IParser* (__cdecl* FN_SHAPE_PARSER)();
 
 	FN_SHAPE_PARSER fn_parser = nullptr;
@@ -23,12 +25,15 @@ int main()
 	for (wstring file_name : dll_names) {
 		HINSTANCE hinstLib;
 		BOOL fRunTimeLinkSuccess = FALSE;
-		
+
 		hinstLib = LoadLibrary(file_name.c_str());
 
 		if (hinstLib != NULL)
 		{
 			hinstLibs.push_back(hinstLib);
+
+			// TO-DO : CHECK BASE OF DLL INSTANCE
+
 			fn_parser = (FN_SHAPE_PARSER)GetProcAddress(hinstLib, "getParserInstance");
 			fn_converter = (FN_SHAPE_CONVERTER)GetProcAddress(hinstLib, "getConverterInstance");
 
@@ -43,8 +48,9 @@ int main()
 				string shapeName = extractExtension(file_name);
 				c_factory.registerWith(shapeName, instance);
 			}
-			
+
 			fRunTimeLinkSuccess = TRUE;
+
 		}
 
 		if (!fRunTimeLinkSuccess) {
@@ -81,19 +87,19 @@ int main()
 		reader.close();
 	}
 
-	cout << "Reading file " << input << "..." << endl;
-	cout << "Expecting to find " << count << " shape(s)" << endl;
-	cout << "Found " << shapes.size() << " shape(s)" << endl;
+	wcout << L"Đang đọc file: " << wstring(input.begin(), input.end()) << "..." << endl;
+	wcout << L"Dự kiến đọc được " << count << L" hình" << endl;
+	wcout << L"Tìm thấy " << shapes.size() << L" hình." << endl;
 
-	int val = _setmode(_fileno(stdout), _O_U16TEXT);
+	ShapePrinter printer;
 	for (auto e : shapes) {
 		IShapeToStringDataConverter* converter = nullptr;
 
 		converter = c_factory.select(e->toString());
-
-		std::wcout << converter->convert(e) << endl;
+		printer.push(converter->convert(e));
 	}
-	
+
+	printer.print();
 	// sort vector with criteria 
 
 	// print on screen

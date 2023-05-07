@@ -8,8 +8,13 @@ extern "C" {
     class CircleToStringConverter :
         public IShapeToStringDataConverter
     {
+    private:
+        inline static CircleToStringConverter* _instance = nullptr;
+        CircleToStringConverter();
+
     public:
-        std::wstring convert(IShape*);
-        std::string toString();
+        static CircleToStringConverter* getInstance();
+        TUPLEOFSHAPESTRING convert(IShape*);
+        string toString();
     };
 }
