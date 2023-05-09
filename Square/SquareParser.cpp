@@ -28,3 +28,8 @@ IShape* SquareParser::parse(string line)
     IShape* shape = new Square(width);
     return shape;
 }
+
+string SquareParser::toString()
+{
+    return string("SquareParser");
+}

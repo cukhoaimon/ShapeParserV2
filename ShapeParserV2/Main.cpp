@@ -16,8 +16,7 @@ int main()
 	ConverterFactory c_factory;
 	ShapeFactory s_factory;
 
-	// register for parser		
-	// register for converter	
+	// register for parser and converter
 	const fs::path find_path{ ".." };
 	vector<wstring> dll_names = extractDLLFiles(find_path);
 
@@ -30,7 +29,6 @@ int main()
 
 		if (hinstLib != NULL)
 		{
-			hinstLibs.push_back(hinstLib);
 
 			// TO-DO : CHECK BASE OF DLL INSTANCE
 
@@ -47,15 +45,19 @@ int main()
 				IShapeToStringDataConverter* instance = fn_converter();
 				string shapeName = extractExtension(file_name);
 				c_factory.registerWith(shapeName, instance);
+			
+				fRunTimeLinkSuccess = TRUE;
 			}
 
-			fRunTimeLinkSuccess = TRUE;
+			if (!fRunTimeLinkSuccess) {
+				wcout << L"Có lỗi khi đọc file: " << file_name << endl;
+				continue;
+			}
 
+			hinstLibs.push_back(hinstLib);
 		}
 
-		if (!fRunTimeLinkSuccess) {
-			wcout << L"Có lỗi khi đọc file: " << file_name << endl;
-		}
+		
 	}
 
 	// read file txt and store in a vector
@@ -91,6 +93,8 @@ int main()
 	wcout << L"Dự kiến đọc được " << count << L" hình" << endl;
 	wcout << L"Tìm thấy " << shapes.size() << L" hình." << endl;
 
+
+	// print to screen
 	ShapePrinter printer;
 	for (auto e : shapes) {
 		IShapeToStringDataConverter* converter = nullptr;
@@ -98,12 +102,9 @@ int main()
 		converter = c_factory.select(e->toString());
 		printer.push(converter->convert(e));
 	}
-
 	printer.print();
-	// sort vector with criteria 
-
-	// print on screen
-
+	
+	// free libs
 	for (auto& hinstance : hinstLibs) {
 		BOOL freeResult = FreeLibrary(hinstance);
 

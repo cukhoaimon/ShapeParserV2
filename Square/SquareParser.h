@@ -12,5 +12,6 @@ extern "C" {
     public:
         static SquareParser* getInstance();
         IShape* parse(string) override;
+        string toString();
     };
 }

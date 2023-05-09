@@ -140,6 +140,7 @@
     <ClInclude Include="Controller\IShapeToStringDataConverter.h" />
     <ClInclude Include="Controller\ShapeFactory.h" />
     <ClInclude Include="Model\IShape.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="View\ShapePrinter.h" />
   </ItemGroup>
   <ItemGroup>

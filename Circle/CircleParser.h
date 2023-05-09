@@ -15,5 +15,7 @@ extern "C" {
     public:
         static CircleParser* getInstance();
         IShape* parse(string);
+        
+        string toString();
     };
 }

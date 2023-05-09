@@ -34,7 +34,7 @@ using std::map;
 using std::ifstream, std::ofstream;
 using std::setw, std::left, std::setprecision, std::fixed;
 using std::tuple;
-using std::shared_ptr;
+using std::shared_ptr, std::make_shared;
 
 namespace fs = std::filesystem;
 

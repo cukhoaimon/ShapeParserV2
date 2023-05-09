@@ -1,6 +1,4 @@
-#ifndef SQUARE_H
-#define SQUARE_H
-
+#pragma once
 #include "pch.h"
 
 extern "C" {
@@ -23,6 +21,4 @@ extern "C" {
         string toString();
     };
 }
-
-#endif // !SQUARE_H
 

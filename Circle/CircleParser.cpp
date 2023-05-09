@@ -28,3 +28,8 @@ IShape* CircleParser::parse(string line)
     return shape;
 }
 
+string CircleParser::toString()
+{
+    return string("CircleParser");
+}
+

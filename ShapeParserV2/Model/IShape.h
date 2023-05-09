@@ -1,11 +1,11 @@
 #pragma once
 #include <string>
+#include "..\Object.h"
 
-class IShape 
+class IShape : public Object
 {
 public:
     virtual double perimeter() = 0;
     virtual double area() = 0;
-    virtual std::string toString() = 0;
 };
 
