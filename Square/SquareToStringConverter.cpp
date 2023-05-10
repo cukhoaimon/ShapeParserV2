@@ -14,7 +14,7 @@ SquareToStringConverter* SquareToStringConverter::getInstance()
     return _instance;
 }
 
-TUPLEOFSHAPESTRING SquareToStringConverter::convert(IShape* shape)
+SHAPECONTAINER SquareToStringConverter::convert(IShape* shape)
 {
     Square* square = (Square*)shape;
     wstringstream* builder = new wstringstream;
@@ -34,7 +34,7 @@ TUPLEOFSHAPESTRING SquareToStringConverter::convert(IShape* shape)
     *builder << m_round(square->area(), 2);
     wstring area = builder->str();
 
-    TUPLEOFSHAPESTRING result = { shapeName, attributes, perimeter, area };
+    SHAPECONTAINER result = { shapeName, attributes, perimeter, area };
     return result;
 }
 

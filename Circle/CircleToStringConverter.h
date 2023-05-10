@@ -14,7 +14,7 @@ extern "C" {
 
     public:
         static CircleToStringConverter* getInstance();
-        TUPLEOFSHAPESTRING convert(IShape*);
+        SHAPECONTAINER convert(IShape*);
         string toString();
     };
 }

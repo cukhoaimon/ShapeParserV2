@@ -14,7 +14,7 @@ CircleToStringConverter* CircleToStringConverter::getInstance()
     return _instance;
 }
 
-TUPLEOFSHAPESTRING CircleToStringConverter::convert(IShape* shape)
+SHAPECONTAINER CircleToStringConverter::convert(IShape* shape)
 {
     Circle* circle = (Circle*)shape;
     wstringstream *builder = new wstringstream;
@@ -34,7 +34,7 @@ TUPLEOFSHAPESTRING CircleToStringConverter::convert(IShape* shape)
     *builder << m_round(circle->area(), 2);
     wstring area = builder->str();
 
-    TUPLEOFSHAPESTRING result = { shapeName, attributes, perimeter, area };
+    SHAPECONTAINER result = { shapeName, attributes, perimeter, area };
     return result;
 }
 

@@ -1,9 +1,9 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "Circle.h"
 
 Circle::Circle() : _radius(0.0) {};
 
-Circle::Circle(double radius) : _radius(radius) {};
+Circle::Circle(double radius) : _radius(radius) {}
 
 double Circle::radius()
 {

@@ -6,12 +6,12 @@
 using std::tuple;
 using std::wstring;
 
-typedef tuple<wstring, wstring, wstring, wstring> TUPLEOFSHAPESTRING;
+typedef tuple<wstring, wstring, wstring, wstring> SHAPECONTAINER;
 
 class IShapeToStringDataConverter
 {
 public:
-	virtual TUPLEOFSHAPESTRING convert(IShape*) = 0;
+	virtual SHAPECONTAINER convert(IShape*) = 0;
 
 public:
 	virtual std::string toString() = 0;

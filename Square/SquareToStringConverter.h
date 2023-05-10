@@ -12,7 +12,7 @@ extern "C" {
 
     public:
         static SquareToStringConverter* getInstance();
-        TUPLEOFSHAPESTRING convert(IShape*);
+        SHAPECONTAINER convert(IShape*);
         string toString();
     };
 }

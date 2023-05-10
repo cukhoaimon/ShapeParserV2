@@ -54,6 +54,18 @@
     <ClCompile Include="View\ShapePrinter.cpp">
       <Filter>View\Source files</Filter>
     </ClCompile>
+    <ClCompile Include="View\ColumnStrategy.cpp">
+      <Filter>View\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="View\DetailStrategy.cpp">
+      <Filter>View\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\DLLController.cpp">
+      <Filter>Controller\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="View\LoadingFailStrategy.cpp">
+      <Filter>View\Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\IShape.h">
@@ -76,6 +88,21 @@
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="View\ColumnStrategy.h">
+      <Filter>View\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="View\DetailStrategy.h">
+      <Filter>View\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="View\IStrategy.h">
+      <Filter>View\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\DLLController.h">
+      <Filter>Controller\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="View\LoadingFailStrategy.h">
+      <Filter>View\Header files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

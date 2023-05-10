@@ -49,13 +49,13 @@ vector<wstring> extractDLLFiles(fs::path src_path)
 {
     vector<wstring> result = vector<wstring>();
 
-    regex pattern(".*.dll");
+    regex pattern(".*api-shape-.*\.dll");
     for (auto const& dir_entry : fs::recursive_directory_iterator{ src_path })
     {
-        string dir_path{ dir_entry.path().string() };
-
+        // dir_path use to check the pattern of dll file
+        string dir_path(dir_entry.path().string());
+        
         if (regex_match(dir_path, pattern)) {
-
             result.push_back(getFileName(dir_path));
         }
     }
@@ -63,8 +63,11 @@ vector<wstring> extractDLLFiles(fs::path src_path)
     return result;
 }
 string extractExtension(wstring src) {
-    wstring r_result = src.substr(0, src.find_last_of(TEXT('.')));
+    size_t dash_position = src.find_last_of(TEXT('-'));
+    size_t dot_position = src.find_last_of(TEXT('.'));
+    
+    wstring r_result = src.substr(dash_position + 1, dot_position - dash_position - 1);
+    
     string result(r_result.begin(), r_result.end());
-
     return result;
 }

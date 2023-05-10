@@ -1,19 +1,23 @@
 #pragma once
 
-#include "..\..\utils\utils.h"
-#include "..\Model\IShape.h"
+#include "..\Object.h"
+#include "IStrategy.h"
+#include "ColumnStrategy.h"
+#include "DetailStrategy.h"
 
-class ShapePrinter
+class ShapePrinter 
+	: public Object
 {
 private:
-	vector<TUPLEOFSHAPESTRING> _holder;
+	IStrategy* _strategy;
 
 public:
 	ShapePrinter();
 
-	wstring pattern(TUPLEOFSHAPESTRING);
-	void push(TUPLEOFSHAPESTRING);
-	void clear();
-	void print();
+	void setStrategy(IStrategy*);
+
+	void print(vector<SHAPECONTAINER> container, string file_name, int expected);
+
+	string toString() override;
 };
 

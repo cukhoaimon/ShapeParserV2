@@ -22,7 +22,7 @@
 #include <memory>
 
 #define SHAPE_API __declspec(dllexport) 
-
+#define W_STR(file_name) wstring(file_name.begin(), file_name.end())
 
 using std::cout, std::cin, std::endl;
 using std::wcout;
@@ -38,7 +38,7 @@ using std::shared_ptr, std::make_shared;
 
 namespace fs = std::filesystem;
 
-typedef tuple<wstring, wstring, wstring, wstring> TUPLEOFSHAPESTRING;
+typedef tuple<wstring, wstring, wstring, wstring> SHAPECONTAINER;
 
 vector<double> extractDouble(string line);
 

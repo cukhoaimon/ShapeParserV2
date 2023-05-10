@@ -1,61 +1,25 @@
 ﻿#include "ShapePrinter.h"
 
-wstring ShapePrinter::pattern(TUPLEOFSHAPESTRING tup)
-{
-	const auto& [shapeName, shapeDescription, perimeter, area] = tup;
-
-    wstringstream builder;
-
-    builder << " | ";
-    builder.fill(' ');
-    builder.width(15);
-    builder << left << shapeName;
-
-    // column 3
-    builder << " | ";
-    builder.fill(' ');
-    builder.width(20);
-    builder << left << shapeDescription;
-
-    // column 4
-    builder << " | ";
-    builder << left << L"Chu vi=" << left;
-    builder.fill(' ');
-    builder.width(10);
-    builder << perimeter;
-
-    // column 5
-    builder << " | ";
-    builder << left << L"Diện tích=" <<  left;
-    builder.fill(' ');
-    builder.width(10);
-    builder << area;
-    builder << " |";
-
-    wstring result = builder.str();
-    return result;
-}
-
 ShapePrinter::ShapePrinter()
 {
-    _holder = vector<TUPLEOFSHAPESTRING>();
+	_strategy = nullptr;
 }
 
-void ShapePrinter::push(TUPLEOFSHAPESTRING element)
+void ShapePrinter::setStrategy(IStrategy* strategy)
 {
-    _holder.push_back(element);
+	if (_strategy != nullptr) {
+		delete _strategy;
+	}
+
+	_strategy = strategy;
 }
 
-void ShapePrinter::clear()
+void ShapePrinter::print(vector<SHAPECONTAINER> container, string file_name, int expected)
 {
-    _holder.clear();
+	_strategy->execute(container, file_name, expected);
 }
 
-void ShapePrinter::print()
+string ShapePrinter::toString()
 {
-    int index = 1;
-    for (const auto& shape : _holder) {
-        wcout << "| " << index << pattern(shape) << endl;
-        index += 1;
-    }
+	return string("ShapePrinter");
 }
