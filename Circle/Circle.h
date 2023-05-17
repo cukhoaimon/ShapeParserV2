@@ -10,12 +10,8 @@ extern "C" {
         double _radius;
 
     public:
-
         Circle();
         Circle(double radius);
-        ~Circle() {
-            wcout << L"Cirlce bị thu hồi rồi đụ mẹ mày nhá " << endl;
-        }
 
         double radius();
         double area() override;

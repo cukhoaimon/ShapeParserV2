@@ -11,7 +11,7 @@ class ColumnStrategy
 {
 private:
 	inline static ColumnStrategy* _instance = nullptr;
-	ColumnStrategy();
+	ColumnStrategy() {};
 
 public:
 	static ColumnStrategy* getInstance();

@@ -1,9 +1,5 @@
 ﻿#include "LoadingFailStrategy.h"
 
-LoadingFailStrategy::LoadingFailStrategy() {
-	// do nothing
-}
-
 LoadingFailStrategy* LoadingFailStrategy::getInstance()
 {
 	if (nullptr == _instance) {

@@ -9,7 +9,7 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
-
+#include "..\ShapeParserV2\Model\IShape.h"
 
 
 #endif //PCH_H

@@ -7,7 +7,7 @@
 #ifndef PCH_H
 #define PCH_H
 
-// add headers that you want to pre-compile here
+// add headers that pre-compile 
 #include "framework.h"
 #include "..\ShapeParserV2\Model\IShape.h"
 #include "..\ShapeParserV2\Controller\IShapeToStringDataConverter.h"

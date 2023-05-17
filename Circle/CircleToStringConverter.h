@@ -13,7 +13,18 @@ extern "C" {
         CircleToStringConverter();
 
     public:
+        /// <summary>
+        /// Get instance of Circle Parser
+        /// </summary>
+        /// <returns>an singleton instance</returns>
         static CircleToStringConverter* getInstance();
+
+        /// <summary>
+        /// Convert a Shape into SHAPECONTAINER which known as 
+        /// a tuple of shape information
+        /// </summary>
+        /// <param name="IShape">Data of shape</param>
+        /// <returns>a tuple of shape information</returns>
         SHAPECONTAINER convert(IShape*);
         string toString();
     };

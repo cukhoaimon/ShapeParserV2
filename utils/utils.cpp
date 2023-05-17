@@ -71,3 +71,36 @@ string extractExtension(wstring src) {
     string result(r_result.begin(), r_result.end());
     return result;
 }
+
+Width getWidth(vector<SHAPECONTAINER> contaiers)
+{
+    Width result = {0,0,0,0};
+
+    for (SHAPECONTAINER container : contaiers) {
+        const auto& [shapeName, shapeDescription, perimeter, area] = container;
+
+        if (shapeName.size() > result.shape_name) {
+            result.shape_name = shapeName.size();
+        }
+
+        if (shapeDescription.size() > result.shape_descriptions) {
+            result.shape_descriptions = shapeDescription.size();
+        }
+
+        if (perimeter.size() > result.shape_perimeter) {
+            result.shape_perimeter = perimeter.size();
+        }
+
+        if (area.size() > result.shape_area) {
+            result.shape_area = area.size();
+        }
+    }
+
+    return Width(result);
+}
+
+bool byArea(IShape* a, IShape*b)
+{
+    bool result = a->area() < b->area();
+    return result;
+}

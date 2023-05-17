@@ -1,11 +1,6 @@
 #include "pch.h"
 #include "SquareParser.h"
-
 #include "Square.h"
-
-SquareParser::SquareParser() {
-    // do nothing
-}
 
 SquareParser* SquareParser::getInstance()
 {

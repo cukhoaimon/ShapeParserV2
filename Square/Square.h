@@ -14,8 +14,8 @@ extern "C" {
 
     public:
         double width();
-        double perimeter();
-        double area();
+        double perimeter() override;
+        double area() override;
 
     public:
         string toString();

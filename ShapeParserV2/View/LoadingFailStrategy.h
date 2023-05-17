@@ -5,13 +5,12 @@
 /*
 =============================== Define class ============================
 */
-
 class LoadingFailStrategy
 	: public IStrategy
 {
 private:
 	inline static LoadingFailStrategy* _instance = nullptr;
-	LoadingFailStrategy();
+	LoadingFailStrategy() {};
 
 public:
 	static LoadingFailStrategy* getInstance();

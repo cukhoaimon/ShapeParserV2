@@ -7,7 +7,16 @@ extern "C" {
     {
     private:
         inline static SquareParser* _instance = nullptr;
-        SquareParser();
+
+        // "= delete" make this method inaccessible 
+        // even from from context that can see private 
+        // method (like friend class, other method 
+        // within class.
+        SquareParser(const SquareParser&) = delete;
+        SquareParser& operator=(const SquareParser&) = delete;
+
+    protected:
+        SquareParser() {};
 
     public:
         static SquareParser* getInstance();

@@ -15,13 +15,15 @@ int main()
 	// tiếng Việt.
 	int hr = _setmode(_fileno(stdout), _O_U16TEXT);
 	
-	// Định nghĩa các con trỏ hàm trỏ đến 
+	// Định nghĩa các con trỏ hàm, trỏ đến 
 	// hàm khởi tạo instance trong các file DLL
 	typedef IParser* (__cdecl* FN_SHAPE_PARSER)();
 	typedef IShapeToStringDataConverter* (__cdecl* FN_SHAPE_CONVERTER)();
 
-	// Khởi tạo ban đầu rỗng
+	// Con trỏ hàm trỏ đến các parser
 	FN_SHAPE_PARSER fn_parser = nullptr;
+
+	// Con trỏ hàm trỏ đến các converter
 	FN_SHAPE_CONVERTER fn_converter = nullptr;
 
 	// Khởi tạo các factory cho Converter và Parser
@@ -61,6 +63,7 @@ int main()
 				c_factory.registerWith(shapeName, instance);			
 			}
 			
+			// Kiểm tra xem có load được hàm hay không
 			fRunTimeLinkSuccess = fn_converter && fn_parser;
 			
 			if (!fRunTimeLinkSuccess) {
@@ -68,18 +71,18 @@ int main()
 				continue;
 			}
 
+			// thêm vào vector để gọi hàm freelib
 			hinstLibs.push_back(hinstLib);
 		}
 	}
 
-	// read file txt and store in a vector
+	// Đọc dữ liệu từ file txt
 	string input = "shape.txt";
 	ifstream reader(input);
 	string line = "";
 	getline(reader, line);
 
 	vector<IShape*> shapes;
-
 	int count = 0;
 	if (reader.good()) {
 		// Dùng hàm extractDouble để lấy số hình hiện có
@@ -102,6 +105,9 @@ int main()
 		reader.close();
 	}
 
+
+	// Sắp xếp
+	sort(shapes.begin(), shapes.end(), byArea);
 	// Convert dữ liệu Shape sang string để in 
 	// ra màn hình.
 	IShapeToStringDataConverter* converter = nullptr;
@@ -129,7 +135,6 @@ int main()
 	printer.print(container, input, count);
 	
 	
-	// Sắp xếp
 	wcout << endl;
 	
 	// In ra màn hình
@@ -137,6 +142,10 @@ int main()
 	strategy = ColumnStrategy::getInstance();
 	printer.setStrategy(strategy);
 	printer.print(container, input, count);
+
+	for (auto& shape : shapes) {
+		delete shape;
+	}
 
 	// free libs
 	for (auto& hinstance : hinstLibs) {

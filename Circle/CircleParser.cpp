@@ -1,10 +1,6 @@
 #include "pch.h"
 #include "CircleParser.h"
 
-CircleParser::CircleParser() {
-    // do nothing
-}
-
 CircleParser* CircleParser::getInstance()
 {
     if (_instance == nullptr) {
