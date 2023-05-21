@@ -16,8 +16,16 @@ IShape* CircleParser::parse(string line)
     double radius = 0;
     regex pattern(".*[R,r]=[0-9]+[.]?[0-9]*");
 
+    if (line.empty()) {
+        throw new NoDataException("Circle");
+    }
+
     if (regex_match(line, pattern)) {
-        radius = extractDouble(line)[0];
+        vector<double> values = extractDouble(line);
+        radius = values[0];
+    }
+    else {
+        throw new IncorrectFormat(line.c_str());
     }
 
     IShape* shape = new Circle(radius);

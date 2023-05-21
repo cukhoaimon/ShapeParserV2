@@ -7,6 +7,7 @@
 #include "View/LoadingFailStrategy.h"
 #include "View/IStrategy.h"
 #include "../utils/utils.h"
+#include "../Exception/Exception.h"
 
 int main()
 {
@@ -118,8 +119,15 @@ int main()
 			// If parser is registed
 			if (parser != nullptr) {
 				// Parse data and return instance of shape
-				IShape* shape = parser->parse(data);
-				shapes.push_back(shape); // store it
+				try {
+					IShape* shape = parser->parse(data);
+					shapes.push_back(shape); // store it
+				}
+				catch (exception*& ex)
+				{
+					string message(ex->what());
+					wcout << W_STR(message) << endl;
+				}
 			}
 		}
 		reader.close();
