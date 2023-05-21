@@ -10,60 +10,65 @@
 
 int main()
 {
-	// Biến lưu trữ kết quả của setmode 
-	// decode utf16 cho việc in ra màn hình
-	// tiếng Việt.
-	int hr = _setmode(_fileno(stdout), _O_U16TEXT);
+	// this variable hold the result of 
+	// setting up mode for print out utf16 text
+	bool hr = _setmode(_fileno(stdout), _O_U16TEXT);
 	
-	// Định nghĩa các con trỏ hàm, trỏ đến 
-	// hàm khởi tạo instance trong các file DLL
+	// define function pointer and return type of it.
 	typedef IParser* (__cdecl* FN_SHAPE_PARSER)();
 	typedef IShapeToStringDataConverter* (__cdecl* FN_SHAPE_CONVERTER)();
 
-	// Con trỏ hàm trỏ đến các parser
+	// Initialize function pointer as nullptr
 	FN_SHAPE_PARSER fn_parser = nullptr;
 
-	// Con trỏ hàm trỏ đến các converter
+	// Initialize function pointer as nullptr
 	FN_SHAPE_CONVERTER fn_converter = nullptr;
 
-	// Khởi tạo các factory cho Converter và Parser
-	ConverterFactory c_factory;
-	ShapeFactory s_factory;
+	// Initial empty factory
+	ConverterFactory converter_factory;
+	ShapeFactory parser_factory;
 
-	// Đọc file DLL và đăng ký với Factory
+	// Find all file dll exists in project
 	const fs::path find_path{ ".." };
 	vector<wstring> dll_names = extractDLLFiles(find_path);
 	
-	// Vector quản lý các file DLL để giải phóng
-	// vùng nhớ khi hết chương trình
+	// vector store all alive instance of DLL 
 	vector<HINSTANCE> hinstLibs;
 	for (wstring file_name : dll_names) {
+		// variable that store DLL instance
 		HINSTANCE hinstLib;
 		BOOL fRunTimeLinkSuccess = FALSE;
 
+		// load DLL
 		hinstLib = LoadLibrary(file_name.c_str());
 
-		// Nếu đọc file thành công
+		// If success to load file DLL
 		if (hinstLib != NULL)
 		{
 			fRunTimeLinkSuccess = TRUE;
 
+			// load address of function
 			fn_parser = (FN_SHAPE_PARSER)GetProcAddress(hinstLib, "getParserInstance");
 			fn_converter = (FN_SHAPE_CONVERTER)GetProcAddress(hinstLib, "getConverterInstance");
 
+			// get the shape name
+			string shapeName = extractExtension(file_name);
+
 			if (NULL != fn_parser) {
+				// Invoked function to initial instance
 				IParser* instance = fn_parser();
-				string shapeName = extractExtension(file_name);
-				s_factory.registerWith(shapeName, instance);
+				// Register with parser factory
+				parser_factory.registerWith(shapeName, instance);
 			}
 
 			if (NULL != fn_converter) {
+				// Invoked function to initial instance
 				IShapeToStringDataConverter* instance = fn_converter();
-				string shapeName = extractExtension(file_name);
-				c_factory.registerWith(shapeName, instance);			
+				// Register with converter factory
+				converter_factory.registerWith(shapeName, instance);			
 			}
 			
-			// Kiểm tra xem có load được hàm hay không
+			// Check whether load function is success or not
 			fRunTimeLinkSuccess = fn_converter && fn_parser;
 			
 			if (!fRunTimeLinkSuccess) {
@@ -71,59 +76,74 @@ int main()
 				continue;
 			}
 
-			// thêm vào vector để gọi hàm freelib
+			// push lib instace to vector 
+			// to manually free it.
 			hinstLibs.push_back(hinstLib);
 		}
 	}
 
-	// Đọc dữ liệu từ file txt
+	// Open file to read
 	string input = "shape.txt";
 	ifstream reader(input);
 	string line = "";
 	getline(reader, line);
 
 	vector<IShape*> shapes;
-	int count = 0;
+	int count = 0; // the actual shape is read
 	if (reader.good()) {
-		// Dùng hàm extractDouble để lấy số hình hiện có
+		// Use extract double get the number of shape
 		count = (int)extractDouble(line)[0];
 
+		// Read line and parse to shape
 		for (int i = 0; i < count; i++) {
+			/*	
+			This block of code will plit 
+			data with delimiter is ':'
+			Example:
+				source data="Circle: r=10"
+				after split
+				type = "Circle"
+				data = " r=10"
+			*/
 			getline(reader, line);
 			stringstream buffer(line);
-			string type;
+			string type; // hold the name type of parser
 			string data;
 			getline(buffer, type, ':');
 			getline(buffer, data);
 
-			IParser* parser = s_factory.select(type);
+			// Select parser
+			IParser* parser = parser_factory.select(type);
+			
+			// If parser is registed
 			if (parser != nullptr) {
+				// Parse data and return instance of shape
 				IShape* shape = parser->parse(data);
-				shapes.push_back(shape);
+				shapes.push_back(shape); // store it
 			}
 		}
 		reader.close();
 	}
 
-
-	// Sắp xếp
+	// Sort ascending by area
 	sort(shapes.begin(), shapes.end(), byArea);
-	// Convert dữ liệu Shape sang string để in 
-	// ra màn hình.
+
+
+	// Pre-print: Convert Shape to string
 	IShapeToStringDataConverter* converter = nullptr;
 	vector<SHAPECONTAINER> container;
 	for (auto shape : shapes) {
-		converter = c_factory.select(shape->toString());
+		converter = converter_factory.select(shape->toString());
 		container.push_back(converter->convert(shape));
 	}
 
 
-	// In ra màn hình các hình tìm được
+	// Set printer to print to screen
+	// shape.
 	ShapePrinter printer;
 	IStrategy* strategy = nullptr;
 
-	// Set strategy cho các trường hợp 
-	// đọc được và không đọc được.
+	// Set strategy for specific case
 	if (count == container.size()) {
 		strategy = DetailStrategy::getInstance();
 	}

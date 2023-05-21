@@ -21,6 +21,7 @@
 #include <tuple>
 #include <memory>
 #include <algorithm> // use for std::sort
+#include <exception>
 
 class IShape; // forward declairation
 
@@ -43,6 +44,7 @@ using std::tuple;
 using std::shared_ptr, std::make_shared;
 using std::unique_ptr, std::move;
 using std::sort;
+using std::exception;
 
 namespace fs = std::filesystem;
 

@@ -129,7 +129,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Controller\ConverterFactory.cpp" />
-    <ClCompile Include="Controller\DLLController.cpp" />
     <ClCompile Include="Controller\IShapeToStringDataConverter.cpp" />
     <ClCompile Include="Controller\ShapeFactory.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -140,7 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller\ConverterFactory.h" />
-    <ClInclude Include="Controller\DLLController.h" />
     <ClInclude Include="Controller\IParser.h" />
     <ClInclude Include="Controller\IShapeToStringDataConverter.h" />
     <ClInclude Include="Controller\ShapeFactory.h" />

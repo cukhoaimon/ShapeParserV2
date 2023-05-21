@@ -20,7 +20,7 @@ SHAPECONTAINER SquareToStringConverter::convert(IShape* shape)
     wstringstream* builder = new wstringstream();
 
     // Build radius attribute
-    *builder << L"Bán kính=" << square->width();
+    *builder << L"Cạnh=" << square->width();
     wstring attributes(builder->str());
 
     // Build shape name attribute

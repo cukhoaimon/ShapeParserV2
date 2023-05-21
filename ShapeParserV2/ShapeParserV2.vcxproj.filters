@@ -22,9 +22,6 @@
     <Filter Include="Controller">
       <UniqueIdentifier>{38d2cd3f-3857-4a4f-aa3b-eb4b5e79a6eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Model\Header files">
-      <UniqueIdentifier>{e7198a55-f84a-4214-abbb-1b2ea2dc859c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Controller\Header files">
       <UniqueIdentifier>{edfae4f7-d2b6-4484-a9c0-4ad59074942b}</UniqueIdentifier>
     </Filter>
@@ -60,17 +57,11 @@
     <ClCompile Include="View\DetailStrategy.cpp">
       <Filter>View\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Controller\DLLController.cpp">
-      <Filter>Controller\Source files</Filter>
-    </ClCompile>
     <ClCompile Include="View\LoadingFailStrategy.cpp">
       <Filter>View\Source files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Model\IShape.h">
-      <Filter>Model\Header files</Filter>
-    </ClInclude>
     <ClInclude Include="Controller\ShapeFactory.h">
       <Filter>Controller\Header files</Filter>
     </ClInclude>
@@ -98,11 +89,11 @@
     <ClInclude Include="View\IStrategy.h">
       <Filter>View\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Controller\DLLController.h">
-      <Filter>Controller\Header files</Filter>
-    </ClInclude>
     <ClInclude Include="View\LoadingFailStrategy.h">
       <Filter>View\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\IShape.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
