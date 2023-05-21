@@ -27,3 +27,15 @@ const char* IncorrectFormat::what() const throw()
     const char* result = COPY_STREAM(builder);
     return result;
 }
+
+const char* InvalidDataRange::what() const throw()
+{
+    stringstream builder;
+    builder << "[!] Invalid data range." << endl;
+    builder << "\t+ Exception cause when parsing string to shape" << endl;
+    builder << "\t+ Detail: [" << string(message) << "]" << endl;
+    builder << "\t+ Expected grater than zero value." << endl;
+
+    const char* result = COPY_STREAM(builder);
+    return result;
+}

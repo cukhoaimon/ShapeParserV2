@@ -97,6 +97,7 @@ wstring getFileName(string dir_path);
 /// <returns>vector of DLL file</returns>
 vector<wstring> extractDLLFiles(fs::path src_path);
 
+
 /// <summary>
 /// extract file name without extension from a wstring
 /// Example:
@@ -111,4 +112,22 @@ string extractExtension(wstring src);
 Width getWidth(vector<SHAPECONTAINER> contaiers);
 
 
+
+/// <summary> 
+/// Subfunction use for std::sort.
+/// A criteria that show std::sort know that
+/// we are sorting ascending by shape area.
+/// </summary>
+/// <returns>True/false</returns>
 bool byArea(IShape* a, IShape* b);
+
+
+
+/// <summary>
+/// Check for values is valid or not
+/// </summary>
+/// <returns>True if all value is valid</returns>
+bool validate(vector<double> values);
+
+
+

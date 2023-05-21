@@ -162,6 +162,9 @@
     <ClCompile Include="SquareToStringConverter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exception\Exception.vcxproj">
+      <Project>{6032bfdf-9d40-4aac-8d25-11f6cee7db9a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\utils\utils.vcxproj">
       <Project>{530d56a9-36f0-4cfa-96e2-b7ff1f538fa3}</Project>
     </ProjectReference>

@@ -42,3 +42,17 @@ public:
 
 	const char* what() const throw();
 };
+
+
+class InvalidDataRange
+	: public exception
+{
+private:
+	const char* message;
+
+public:
+	InvalidDataRange(const char* msg) : message(_strdup(msg)) {};
+	~InvalidDataRange() { delete[] message; };
+
+	const char* what() const throw();
+};

@@ -1,35 +1,32 @@
 #include "pch.h"
 #include "Rectangle.h"
 
-Rectangle::Rectangle(double width, double height)
-{
-	_width = width;
-	_height = height;
-}
 
-double Rectangle::width()
+RectangleCLS::RectangleCLS()
 {
-	return _width;
-}
+	this->_width = 0;
+	this->_height = 0;
+};
 
-double Rectangle::height()
+RectangleCLS::RectangleCLS(double width, double height)
 {
-	return _height;
-}
+	this->_width = width;
+	this->_height = height;
+};
 
-double Rectangle::perimeter()
-{
-	double result = (_width + _height) * 2;
-	return result;
-}
-
-double Rectangle::area()
+double RectangleCLS::area()
 {
 	double result = _width * _height;
 	return result;
 }
 
-string Rectangle::toString()
+double RectangleCLS::perimeter()
+{
+	double result = 2 * (_width + _height);
+	return result;
+}
+
+string RectangleCLS::toString()
 {
 	return string("Rectangle");
 }

@@ -20,13 +20,22 @@ IShape* CircleParser::parse(string line)
         throw new NoDataException("Circle");
     }
 
-    if (regex_match(line, pattern)) {
-        vector<double> values = extractDouble(line);
-        radius = values[0];
-    }
-    else {
+    if (!regex_match(line, pattern)) {
         throw new IncorrectFormat(line.c_str());
     }
+
+    vector<double> values = extractDouble(line);
+
+    if (values.empty()) {
+        throw new NoDataException("Circle");
+    }
+
+
+    if (validate(values) == false) {
+        throw new InvalidDataRange(line.c_str());
+    }
+
+    radius = values[0];
 
     IShape* shape = new Circle(radius);
     return shape;

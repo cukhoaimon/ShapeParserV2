@@ -115,19 +115,21 @@ int main()
 
 			// Select parser
 			IParser* parser = parser_factory.select(type);
-			
-			// If parser is registed
-			if (parser != nullptr) {
-				// Parse data and return instance of shape
-				try {
-					IShape* shape = parser->parse(data);
-					shapes.push_back(shape); // store it
-				}
-				catch (exception*& ex)
-				{
-					string message(ex->what());
-					wcout << W_STR(message) << endl;
-				}
+
+			// If parser is not registed
+			if (parser == nullptr) {
+				continue;
+			}
+
+			// Parse data and return instance of shape
+			try {
+				IShape* shape = parser->parse(data);
+				shapes.push_back(shape); // store it
+			}
+			catch (exception*& ex)
+			{
+				string message(ex->what());
+				wcout << W_STR(message) << endl;
 			}
 		}
 		reader.close();
@@ -136,18 +138,16 @@ int main()
 	// Sort ascending by area
 	sort(shapes.begin(), shapes.end(), byArea);
 
-
-	// Pre-print: Convert Shape to string
+	// Pre-print phase: Convert Shape to string
 	IShapeToStringDataConverter* converter = nullptr;
 	vector<SHAPECONTAINER> container;
 	for (auto shape : shapes) {
-		converter = converter_factory.select(shape->toString());
+		// select converter
+		converter = converter_factory.select(shape->toString()); 
 		container.push_back(converter->convert(shape));
 	}
 
-
 	// Set printer to print to screen
-	// shape.
 	ShapePrinter printer;
 	IStrategy* strategy = nullptr;
 
@@ -161,16 +161,15 @@ int main()
 
 	printer.setStrategy(strategy);
 	printer.print(container, input, count);
-	
-	
 	wcout << endl;
 	
-	// In ra màn hình
-	
+	// Set strategy to print out result of shape
+	// after calculate Perimeter and Area.
 	strategy = ColumnStrategy::getInstance();
 	printer.setStrategy(strategy);
 	printer.print(container, input, count);
 
+	// delete instance of shape.
 	for (auto& shape : shapes) {
 		delete shape;
 	}

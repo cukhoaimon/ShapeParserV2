@@ -1,27 +1,29 @@
 #pragma once
+
 #include "pch.h"
+#include "Rectangle.h"
 
-class RectangleParser :
-    public IParser
-{
-public:
-    IShape* parse(string);
-};
+extern "C" {
+    class RectangleParser :
+        public IParser
+    {
+    private:
+        inline static RectangleParser* _instance = nullptr;
 
-#include "RectangleParser.h"
+        // "= delete" make this method inaccessible 
+        // even from from context that can see private 
+        // method (like friend class, other method 
+        // within class.
+        RectangleParser(const RectangleParser&) = delete;
+        RectangleParser& operator=(const RectangleParser&) = delete;
 
-IShape* RectangleParser::parse(string line)
-{
-    double width = 0;
-    double height = 0;
-    regex pattern(".*[W,w]=[0-9]*[.]?[0-9]*, [H,h]=[0-9]+[.]?[0-9]*");
 
-    if (regex_match(line, pattern)) {
-        vector<double> values = extractDouble(line);
-        width = values[0];
-        height = values[1];
-    }
+    protected:
+        RectangleParser() {};
 
-    IShape* shape = new Rectangle(width, height);
-    return shape;
+    public:
+        static RectangleParser* getInstance();
+        IShape* parse(string) override;
+        string toString();
+    };
 }

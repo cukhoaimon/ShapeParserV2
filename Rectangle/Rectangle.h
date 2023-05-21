@@ -1,21 +1,25 @@
-﻿#pragma once
+#pragma once
 #include "pch.h"
 
-class Rectangle :
-    public IShape
-{
-private:
-    double _width;
-    double _height;
 
-public:
-    Rectangle(double, double);
+extern "C" {
+    class RectangleCLS :
+        public IShape
+    {
+    private:
+        double _width;
+        double _height;
 
-    double width();
-    double height();
-    double perimeter();
-    double area();
+    public:
+        RectangleCLS();
+        RectangleCLS(double width, double height);
 
-    string toString();
-};
+        double width() { return _width; };
+        double height() { return _height; };
 
+        double area() override;
+        double perimeter() override;
+
+        string toString();
+    };
+}

@@ -104,3 +104,14 @@ bool byArea(IShape* a, IShape*b)
     bool result = a->area() < b->area();
     return result;
 }
+
+bool validate(vector<double> values)
+{
+    bool result = true;
+    
+    for (double value : values) {
+        result = result && (value > 0);
+    }
+
+    return result;
+}
