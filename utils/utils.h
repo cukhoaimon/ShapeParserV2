@@ -108,9 +108,12 @@ vector<wstring> extractDLLFiles(fs::path src_path);
 /// <returns>file name</returns>
 string extractExtension(wstring src);
 
-
-Width getWidth(vector<SHAPECONTAINER> contaiers);
-
+/// <summary>
+/// Calculate the maximum width for each field
+/// </summary>
+/// <param name="containers">converted data</param>
+/// <returns>Struct holding the needed width for each field</returns>
+Width getWidth(vector<SHAPECONTAINER> containers);
 
 
 /// <summary> 

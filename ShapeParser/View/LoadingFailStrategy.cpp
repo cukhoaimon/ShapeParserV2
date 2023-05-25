@@ -11,7 +11,7 @@ LoadingFailStrategy* LoadingFailStrategy::getInstance()
 
 void LoadingFailStrategy::execute(vector<SHAPECONTAINER> container, string file_name, int expected)
 {
-	int found = container.size();
+	int found = static_cast<int>(container.size());
 	int loss = expected - found;
 	wcout << L"Đang đọc tập tin " << W_STR(file_name) << "..." << endl;
 	wcout << L"Tìm thấy " << found << L" hình / " << expected << L" hình" << endl;

@@ -98,25 +98,22 @@ int main()
 	string input = "shapes.txt";
 	ifstream reader(input);
 	string line = "";
-	getline(reader, line);
 
 	vector<IShape*> shapes;
-	int count = 0; // the actual shape is read
+	int count = 0; // the actual shape must read
 	if (reader.good()) {
-		// Use extract double get the number of shape
-		count = (int)extractDouble(line)[0];
-
 		// Read line and parse to shape
-		for (int i = 0; i < count; i++) {
+		while (!reader.eof()) {
 			/*	
 			This block of code will plit 
 			data with delimiter is ':'
 			Example:
 				source data="Circle: r=10"
-				after split
+				-- after split --
 				type = "Circle"
 				data = " r=10"
 			*/
+			count += 1;
 			getline(reader, line);
 			stringstream buffer(line);
 			string type; // hold the name type of parser
@@ -150,7 +147,6 @@ int main()
 	// ------------ Phase 4: Print to screen ------------
 	// --------------------------------------------------
 	
-
 	// Pre-print phase: Convert Shape to string
 	IShapeToStringDataConverter* converter = nullptr;
 	vector<SHAPECONTAINER> container;

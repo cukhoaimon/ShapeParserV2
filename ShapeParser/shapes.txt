@@ -1,4 +1,3 @@
-8
 Square: a=2
 Circle: r=12
 Square: a=5
@@ -7,3 +6,4 @@ Rectangle: w=6, h=8
 Circle: r=5
 Square: a=13
 Rectangle: w=4, h=23
+Triangle: a=1, b=2, c=

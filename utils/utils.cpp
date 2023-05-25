@@ -10,9 +10,12 @@ vector<double> extractDouble(string line)
     vector<double> values;
     stringstream stream(line);
 
+    // while reader buffer is available
     while (stream.rdbuf()->in_avail()) {
+        // get the value
         stream >> value;
 
+        // if reader is good or end of file then push to result
         if (stream.good() || stream.eof()) {
             values.push_back(value);
         }
@@ -79,19 +82,19 @@ Width getWidth(vector<SHAPECONTAINER> contaiers)
     for (SHAPECONTAINER container : contaiers) {
         const auto& [shapeName, shapeDescription, perimeter, area] = container;
 
-        if (shapeName.size() > result.shape_name) {
+        if (static_cast<int>(shapeName.size()) > result.shape_name) {
             result.shape_name = shapeName.size();
         }
 
-        if (shapeDescription.size() > result.shape_descriptions) {
+        if (static_cast<int>(shapeDescription.size()) > result.shape_descriptions) {
             result.shape_descriptions = shapeDescription.size();
         }
 
-        if (perimeter.size() > result.shape_perimeter) {
+        if (static_cast<int>(perimeter.size()) > result.shape_perimeter) {
             result.shape_perimeter = perimeter.size();
         }
 
-        if (area.size() > result.shape_area) {
+        if (static_cast<int>(area.size()) > result.shape_area) {
             result.shape_area = area.size();
         }
     }
