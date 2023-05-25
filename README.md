@@ -12,11 +12,14 @@
 - This project can dynamically injection of shape, which mean you can write more type of shape (ofcourse you must be create DLL project in this solution) with out rebuild all solution. Just build your dependencies and program will work perfectly.
 - Directry tree:
 ```
-ShapeParserV2: 
-  |-- Exception
-  |-- utils
+ShapeParser: 
+  |-- Exception (static library)
+  |-- utils (static library)
   |-- ShapeParser
-  |-- [Shape DLL project]
+  |      |-- Controller (IParser, IConverter, Factory)
+  |      |-- Model (IShape)
+  |      |-- View (Printer, IStrategy)
+  |-- [Another shape DLL project]
 ```
 
 - You must be config the export file dll of new shape following this format:
