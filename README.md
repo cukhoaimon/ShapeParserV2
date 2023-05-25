@@ -9,6 +9,20 @@
 
 ## About Project
 - Project using OOP concept, with application architecture following MVC pattern. 
+- This project can dynamically injection of shape, which mean you can write more type of shape (ofcourse you must be create DLL project in this solution) with out rebuild all solution. Just build your dependencies and program will work perfectly.
+- Directry tree:
+```
+ShapeParserV2: 
+  |-- Exception
+  |-- utils
+  |-- ShapeParser
+  |-- [Shape DLL project]
+```
+
+- You must be config the export file dll of new shape following this format:
+```
+api-shape-$(solution_name).dll
+```
 
 ## About source code
 - Structure of input data (you can change whatever format you want and adjust the Regex pattern in class ShapeParser):
