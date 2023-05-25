@@ -49,7 +49,7 @@ More detail:
 - If you wanna replicate this project or catch any problem, contact to me:
 >Outlook: 21120530@student.hcmus.edu.vn
 
-- If you use this repositry for your project in University, please cite me with information as below:
+- If you use this repository for your project in University, please cite me with information as below:
 
 ```
 Nguyen Hoang Phuc, Falcuty of Information Technology, VNU - Ho Chi Minh University of Science
