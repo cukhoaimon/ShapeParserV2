@@ -11,9 +11,9 @@
 #include "framework.h"
 
 // include shape component
-#include "..\ShapeParserV2\Model\IShape.h"
-#include "..\ShapeParserV2\Controller\IShapeToStringDataConverter.h"
-#include "..\ShapeParserV2\Controller\IParser.h"
+#include "..\ShapeParser\Model\IShape.h"
+#include "..\ShapeParser\Controller\IShapeToStringDataConverter.h"
+#include "..\ShapeParser\Controller\IParser.h"
 
 // include dependencies
 #include "..\utils\utils.h"

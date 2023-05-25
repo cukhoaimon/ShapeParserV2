@@ -17,7 +17,7 @@ IShape* SquareParser::parse(string line)
     regex pattern(".*[A,a]=[0-9]*[.]?[0-9]*");
 
     if (line.empty()) {
-        throw new NoDataException("Square");
+        throw new NoDataException("Square empty line");
     }
 
     if (!regex_match(line, pattern)) {
@@ -27,7 +27,7 @@ IShape* SquareParser::parse(string line)
     vector<double> values = extractDouble(line);
 
     if (values.empty()) {
-        throw new NoDataException("Square");
+        throw new NoDataException("Square missing value");
     }
 
     if (validate(values) == false) {

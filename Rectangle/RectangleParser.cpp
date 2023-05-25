@@ -18,7 +18,7 @@ IShape* RectangleParser::parse(string line)
     regex pattern(".*[W,w]=[0-9]+[.]?[0-9]*,[ ]*[H,h]=[0-9]+[.]?[0-9]*");
 
     if (line.empty()) {
-        throw new NoDataException("Rectangle");
+        throw new NoDataException("Rectangle empty line");
     }
 
     if (!regex_match(line, pattern)) {
@@ -28,7 +28,7 @@ IShape* RectangleParser::parse(string line)
     vector<double> values = extractDouble(line);
 
     if (values.empty() || values.size() != 2) {
-        throw new NoDataException("Rectangle");
+        throw new NoDataException("Rectangle missing value");
     }
 
     if (validate(values) == false) {
