@@ -99,11 +99,15 @@ Width getWidth(vector<SHAPECONTAINER> contaiers)
     return Width(result);
 }
 
-bool byArea(IShape* a, IShape*b)
+bool byArea(SHAPECONTAINER a, SHAPECONTAINER b)
 {
-    bool result = a->area() < b->area();
+    double area_a = stod(get<3>(a));
+    double area_b = stod(get<3>(b));
+
+    bool result = area_a < area_b;
     return result;
 }
+
 
 bool validate(vector<double> values)
 {

@@ -14,7 +14,11 @@ private:
 public:
 	ShapePrinter();
 
-	void setStrategy(IStrategy*);
+	/// <summary>
+	/// Swap state of strategy
+	/// </summary>
+	/// <param name="strategy">Strategy want to set</param>
+	void setStrategy(IStrategy* strategy);
 
 	/// <summary>
 	/// Print information of shape to screen with

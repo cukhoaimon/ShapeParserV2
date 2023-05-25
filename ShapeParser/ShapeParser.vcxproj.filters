@@ -97,7 +97,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="shape.txt">
+    <CopyFileToFolders Include="shapes.txt">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
   </ItemGroup>

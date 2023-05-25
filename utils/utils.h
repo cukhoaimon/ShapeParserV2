@@ -119,7 +119,7 @@ Width getWidth(vector<SHAPECONTAINER> contaiers);
 /// we are sorting ascending by shape area.
 /// </summary>
 /// <returns>True/false</returns>
-bool byArea(IShape* a, IShape* b);
+bool byArea(SHAPECONTAINER a, SHAPECONTAINER b);
 
 
 

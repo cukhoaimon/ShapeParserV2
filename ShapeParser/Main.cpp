@@ -1,4 +1,5 @@
-﻿#include "Model/IShape.h"
+﻿// Load MVC component
+#include "Model/IShape.h"
 #include "Controller/ShapeFactory.h"
 #include "Controller/ConverterFactory.h"
 #include "View/ShapePrinter.h"
@@ -6,11 +7,15 @@
 #include "View/DetailStrategy.h"
 #include "View/LoadingFailStrategy.h"
 #include "View/IStrategy.h"
+
+// Load depenencies
 #include "../utils/utils.h"
 #include "../Exception/Exception.h"
 
+// Main function
 int main()
 {
+    // ------------ Phase 1: Prepare ------------
 	// this variable hold the result of 
 	// setting up mode for print out utf16 text
 	bool hr = _setmode(_fileno(stdout), _O_U16TEXT);
@@ -29,6 +34,9 @@ int main()
 	ConverterFactory converter_factory;
 	ShapeFactory parser_factory;
 
+	// --------------------------------------------------
+	// ------------ Phase 2: Load dependencies ----------
+	// --------------------------------------------------
 	// Find all file dll exists in project
 	const fs::path find_path{ ".." };
 	vector<wstring> dll_names = extractDLLFiles(find_path);
@@ -82,9 +90,12 @@ int main()
 			hinstLibs.push_back(hinstLib);
 		}
 	}
+	// --------------------------------------------
+	// ------------ Phase 3: Read data ------------
+ 	// --------------------------------------------
 
 	// Open file to read
-	string input = "shape.txt";
+	string input = "shapes.txt";
 	ifstream reader(input);
 	string line = "";
 	getline(reader, line);
@@ -135,8 +146,10 @@ int main()
 		reader.close();
 	}
 
-	// Sort ascending by area
-	sort(shapes.begin(), shapes.end(), byArea);
+	// --------------------------------------------------
+	// ------------ Phase 4: Print to screen ------------
+	// --------------------------------------------------
+	
 
 	// Pre-print phase: Convert Shape to string
 	IShapeToStringDataConverter* converter = nullptr;
@@ -165,10 +178,16 @@ int main()
 	
 	// Set strategy to print out result of shape
 	// after calculate Perimeter and Area.
+	// Sort ascending by area
+	sort(container.begin(), container.end(), byArea);
 	strategy = ColumnStrategy::getInstance();
 	printer.setStrategy(strategy);
 	printer.print(container, input, count);
 
+
+	// ----------------------------------------------
+	// ------------ Phase 5: Free memory ------------
+	// ----------------------------------------------
 	// delete instance of shape.
 	for (auto& shape : shapes) {
 		delete shape;
